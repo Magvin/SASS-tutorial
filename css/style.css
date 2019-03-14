@@ -26,6 +26,17 @@
     opacity: 1;
     transform: translateY(0); } }
 
+@keyframes moveFromBottom {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, 0); }
+  50% {
+    opacity: 1;
+    transform: translate(-50%, -25%); }
+  190% {
+    opacity: 1;
+    transform: translate(-50%, -50%); } }
+
 *,
 *::after,
 *::before {
@@ -144,6 +155,10 @@ body {
   .btn--white::after {
     background-color: #fff; }
 
+.btn--green {
+  background-color: #55c57a;
+  color: #fff !important; }
+
 .btn--animated {
   animation: moveInBottom .5s ease-out .75s;
   animation-fill-mode: backwards; }
@@ -214,7 +229,7 @@ body {
   width: 75%;
   margin: 0 auto;
   box-shadow: 0 3rem 6rem rgba(0, 0, 0, 0.1);
-  background-color: #fff;
+  background-color: rgba(255, 255, 255, 0.6);
   border-radius: 3px;
   padding: 8rem;
   padding-left: 11rem;
@@ -230,11 +245,32 @@ body {
     -webkit-shape-outside: circle(50% at 50% 50%);
     shape-outside: circle(50% at 50% 50%);
     -webkit-clip-path: circle(50% at 50% 50%);
-    clip-path: circle(50% at 50% 50%); }
+    clip-path: circle(50% at 50% 50%);
+    position: relative; }
   .story__image {
     width: 100%;
     height: 100%;
-    object-fit: cover; }
+    object-fit: cover;
+    z-index: 1; }
+  .story__text {
+    z-index: -1;
+    position: relative; }
+  .story__caption {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 0);
+    text-align: center;
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 1.7rem;
+    opacity: 0;
+    transition: all .5s; }
+  .story:hover .story__caption {
+    opacity: 1;
+    transform: translate(-50%, -50%); }
+  .story:hover .story__image {
+    filter: blur(5px); }
 
 .card {
   perspective: 150rem;
@@ -328,6 +364,20 @@ body {
     font-size: 6rem;
     font-weight: 100; }
 
+.bg-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: -1;
+  opacity: .15;
+  overflow: hidden; }
+  .bg-video__content {
+    object-fit: cover;
+    height: 100%;
+    width: 100%; }
+
 .header {
   height: 95vh;
   background-image: linear-gradient(to right bottom, rgba(126, 213, 111, 0.8), rgba(40, 180, 133, 0.8)), url("/img/hero.jpg");
@@ -390,9 +440,9 @@ body {
 
 .section-tours {
   background-color: #f7f7f7;
-  padding: 25rem 0 50rem 0;
+  padding: 25rem 0 15rem 0;
   margin-top: -13rem; }
 
 .section-stories {
-  padding: 15rem 0;
-  background-color: #f7f7f7; }
+  position: relative;
+  padding: 15rem 0; }
