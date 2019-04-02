@@ -78,6 +78,7 @@
         }
 
     }
+
     &__checkbox:checked ~ &__background {
         transform: scale(80)
 
@@ -86,7 +87,33 @@
     &__checkbox:checked ~ &__nav {
         visibility:visible;
         opacity:1;
+        
+    }
 
+    &__checkbox:checked ~ &__button {
+        &:before {
+            font-family: FontAwesome;
+            content: '\f00d';
+            top: 50%;
+            left: 50%;
+            position: absolute;
+            transform: translate(-50%, -50%);
+            font-size: 4rem;
+            color:$color-black;
+        }
+        
+    }
+    &__button {
+        &::before {
+            font-family: FontAwesome;
+            content: "\f0c9";
+            top: 50%;
+            left: 50%;
+            position: absolute;
+            transform: translate(-50%, -50%);
+            font-size: 4rem;
+            color:$color-black;
+        }
     }
 }
 
